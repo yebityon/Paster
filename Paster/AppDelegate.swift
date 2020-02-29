@@ -1,39 +1,70 @@
 //
 //  AppDelegate.swift
-//  Paster
+//  lipsy
 //
-//  Created by Seong on 2020/02/29.
-//  Copyright © 2020 Seong. All rights reserved.
+//  Created by Seong on 2019/09/02.
+//  Copyright © 2019 Seong. All rights reserved.
 //
 
 import Cocoa
-import SwiftUI
+import RxSwift
+import RxCocoa
 
 @NSApplicationMain
+
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    var window: NSWindow!
-
-
+    
+    let menuManager = MenuManager()
+    var item : [NSPasteboardItem?] = []
+    private let myStringHandler : stringHandler = stringHandler()
+    fileprivate var lstString : String  = ""
+    fileprivate let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
-
-        // Create the window and set the content view. 
-        window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-            backing: .buffered, defer: false)
-        window.center()
-        window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
-        window.makeKeyAndOrderFront(nil)
+        self.menuManager.build()
+        print("startMontoring")
+        self.startMonitoring()
+        print(#function)
     }
-
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
-
+    @objc func manageState(){
+        if menuManager.isLipsyActive {
+            menuManager.isLipsyActive = false
+            if let stateMenu = menuManager.statusBarMenu.item(at: 0){
+                stateMenu.title = "STATE : INACTIVE"
+                //MARK:= what is "itemChanged"? does this func need?
+                //menuManager.statusBarMenu.itemChanged(stateMenu)
+            }
+            if let manageMenu = menuManager.statusBarMenu.item(at: 1){
+                manageMenu.title = "active"
+            }
+        } else {
+            menuManager.isLipsyActive = true
+            if let stateMenu = menuManager.statusBarMenu.item(at: 0){
+                stateMenu.title = "STATE : ACTIVE"
+            }
+            if let manageMenu = menuManager.statusBarMenu.item(at: 1){
+                manageMenu.title = "inactive"
+            }
+        }
+    }
+    func startMonitoring() {
+//        let disposeBag = DisposeBag()
+        Observable<Int>.interval(0.75,scheduler: scheduler)
+            .subscribe({ [weak self]  _ in
+                if let str = self?.lstString , let strHandler = self?.myStringHandler,
+                    let menuManager = self?.menuManager {
+                    let currentStr = strHandler.getStr()
+                    if str != currentStr && menuManager.isLipsyActive {
+                        self?.lstString = currentStr
+                        print("updated : lstString")
+                        let str = strHandler.removeCRLF()!
+                        strHandler.writeToClipBoard(str: str)
+                    }
+                }
+            })
+        
+    }
 }
-
