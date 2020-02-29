@@ -18,6 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let myStringHandler : stringHandler = stringHandler()
     fileprivate var lstString : String  = ""
     fileprivate let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate var cachedChangeCount = BehaviorRelay<Int>(value: 0)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         self.menuManager.build()
@@ -31,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func manageState(){
         if menuManager.isPasterActive {
             menuManager.isPasterActive = false
+            menuManager.changeButtonTitle()
             if let stateMenu = menuManager.statusBarMenu.item(at: 0){
                 stateMenu.title = "STATE : INACTIVE"
                 //MARK:= what is "itemChanged"? does this func need?
@@ -41,6 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         } else {
             menuManager.isPasterActive = true
+            menuManager.changeButtonTitle()
             if let stateMenu = menuManager.statusBarMenu.item(at: 0){
                 stateMenu.title = "STATE : ACTIVE"
             }
@@ -65,4 +69,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             })
     }
+     func montoringClipBoard() {
+            Observable<Int>.interval(0.75,scheduler: scheduler)
+                .map{_ in NSPasteboard.general.changeCount }
+                //combine event
+                .withLatestFrom(cachedChangeCount.asObservable()){($0,$1)}
+                .filter{ $0 != $1}
+                .subscribe(onNext:{ [weak self] changeCount in
+                    
+                },
+                   onError: nil,
+                   onCompleted: nil,
+                   onDisposed: nil)
+        .disposed(by: disposeBag)
+        
+        
+        
+        }
+    
 }

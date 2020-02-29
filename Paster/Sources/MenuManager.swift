@@ -33,6 +33,13 @@ class MenuManager : NSObject {
         statusBarItem?.menu = self.statusBarMenu
         print(#function)
     }
+    func changeButtonTitle() {
+        if isPasterActive {
+            statusBarItem?.button?.title = "🍝"
+        } else {
+            statusBarItem?.button?.title = "🍽"
+        }
+    }
     private func createMenu(){
         initPasterState()
         initPasterChangeState()
