@@ -15,10 +15,10 @@ class MenuManager : NSObject {
     var statusBarItem : NSStatusItem?
     var statusBarMenu = NSMenu()
     
-    var isLipsyActive: Bool = true
-    var itemLipsyState  : NSMenuItem = NSMenuItem()
-    var itemLipsyChangeState : NSMenuItem  = NSMenuItem()
-    var itemLipsyQuit : NSMenuItem = NSMenuItem()
+    var isPasterActive: Bool = true
+    var itemPasterState  : NSMenuItem = NSMenuItem()
+    var itemPasterChangeState : NSMenuItem  = NSMenuItem()
+    var itemPasterQuit : NSMenuItem = NSMenuItem()
 
     override init(){
         super.init()
@@ -34,25 +34,25 @@ class MenuManager : NSObject {
         print(#function)
     }
     private func createMenu(){
-        initLipsyState()
-        initLipsyChangeState()
-        initLipsyQuit()
+        initPasterState()
+        initPasterChangeState()
+        initPasterQuit()
     }
-    private func initLipsyState(){
-        itemLipsyState = NSMenuItem(title: "STATE : ACTIVE ",action : nil, keyEquivalent: "")
-        itemLipsyState.tag = 0
-        statusBarMenu.addItem(itemLipsyState)
+    private func initPasterState(){
+        itemPasterState = NSMenuItem(title: "STATE : ACTIVE ",action : nil, keyEquivalent: "")
+        itemPasterState.tag = 0
+        statusBarMenu.addItem(itemPasterState)
     }
-    private func initLipsyChangeState(){
-        itemLipsyChangeState = NSMenuItem(title:"inactive", action : #selector(AppDelegate.manageState),keyEquivalent: "")
-        itemLipsyState.tag = 1
-        statusBarMenu.addItem(itemLipsyChangeState)
+    private func initPasterChangeState(){
+        itemPasterChangeState = NSMenuItem(title:"inactive", action : #selector(AppDelegate.manageState),keyEquivalent: "")
+        itemPasterState.tag = 1
+        statusBarMenu.addItem(itemPasterChangeState)
     }
-    private func initLipsyQuit(){
-        itemLipsyQuit = NSMenuItem(title: "Quit",action: #selector(NSApplication.terminate(_:)),
+    private func initPasterQuit(){
+        itemPasterQuit = NSMenuItem(title: "Quit",action: #selector(NSApplication.terminate(_:)),
         keyEquivalent: "q")
-        itemLipsyQuit.tag = 2
-        statusBarMenu.addItem(itemLipsyQuit)
+        itemPasterQuit.tag = 2
+        statusBarMenu.addItem(itemPasterQuit)
     }
 }
 

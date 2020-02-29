@@ -1,6 +1,5 @@
 //
 //  AppDelegate.swift
-//  lipsy
 //
 //  Created by Seong on 2019/09/02.
 //  Copyright © 2019 Seong. All rights reserved.
@@ -30,8 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     @objc func manageState(){
-        if menuManager.isLipsyActive {
-            menuManager.isLipsyActive = false
+        if menuManager.isPasterActive {
+            menuManager.isPasterActive = false
             if let stateMenu = menuManager.statusBarMenu.item(at: 0){
                 stateMenu.title = "STATE : INACTIVE"
                 //MARK:= what is "itemChanged"? does this func need?
@@ -41,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 manageMenu.title = "active"
             }
         } else {
-            menuManager.isLipsyActive = true
+            menuManager.isPasterActive = true
             if let stateMenu = menuManager.statusBarMenu.item(at: 0){
                 stateMenu.title = "STATE : ACTIVE"
             }
@@ -57,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if let str = self?.lstString , let strHandler = self?.myStringHandler,
                     let menuManager = self?.menuManager {
                     let currentStr = strHandler.getStr()
-                    if str != currentStr && menuManager.isLipsyActive {
+                    if str != currentStr && menuManager.isPasterActive {
                         self?.lstString = currentStr
                         print("updated : lstString")
                         let str = strHandler.removeCRLF()!
@@ -65,6 +64,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                 }
             })
-        
     }
 }
