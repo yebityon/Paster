@@ -108,10 +108,7 @@
 		2907F2E2240A4F1700BC7DB3 /* Paster */ = {
 			isa = PBXGroup;
 			children = (
-				2907F2E3240A4F1700BC7DB3 /* AppDelegate.swift */,
-				2907F31D240A4FE200BC7DB3 /* MenuManager.swift */,
-				2907F2E5240A4F1700BC7DB3 /* ContentView.swift */,
-				2907F31F240A500A00BC7DB3 /* StringHandler.swift */,
+				2907F321240A5AC600BC7DB3 /* Sources */,
 				2907F2E7240A4F1A00BC7DB3 /* Assets.xcassets */,
 				2907F2EC240A4F1A00BC7DB3 /* Main.storyboard */,
 				2907F2EF240A4F1A00BC7DB3 /* Info.plist */,
@@ -145,6 +142,17 @@
 				2907F306240A4F1B00BC7DB3 /* Info.plist */,
 			);
 			path = PasterUITests;
+			sourceTree = "<group>";
+		};
+		2907F321240A5AC600BC7DB3 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2907F2E5240A4F1700BC7DB3 /* ContentView.swift */,
+				2907F31F240A500A00BC7DB3 /* StringHandler.swift */,
+				2907F2E3240A4F1700BC7DB3 /* AppDelegate.swift */,
+				2907F31D240A4FE200BC7DB3 /* MenuManager.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
