@@ -10,10 +10,9 @@ import Cocoa
 
 class MenuManager : NSObject {
     
-    fileprivate var clipMenu : NSMenu?
-    fileprivate var snippetMenu: NSMenu?
-    var statusBarItem : NSStatusItem?
-    var statusBarMenu = NSMenu()
+
+    private var statusBarItem : NSStatusItem?
+    private var statusBarMenu = NSMenu()
     
     var isPasterActive: Bool = true
     var itemPasterState  : NSMenuItem = NSMenuItem()
@@ -31,7 +30,7 @@ class MenuManager : NSObject {
         //TODO:= for debug
         createMenu()
         statusBarItem?.menu = self.statusBarMenu
-        print(#function)
+        NSLog(#function + "called")
     }
     func changeButtonTitle() {
         if isPasterActive {
@@ -43,7 +42,6 @@ class MenuManager : NSObject {
     func updateMenuState() {
         if isPasterActive {
             isPasterActive = false
-            changeButtonTitle()
             if let stateMenu = statusBarMenu.item(at: 0){
                 stateMenu.title = "STATE : INACTIVE"
                 //MARK:= what is "itemChanged"? does this func need?
@@ -54,7 +52,6 @@ class MenuManager : NSObject {
             }
         } else {
             isPasterActive = true
-           changeButtonTitle()
             if let stateMenu = statusBarMenu.item(at: 0){
                 stateMenu.title = "STATE : ACTIVE"
             }

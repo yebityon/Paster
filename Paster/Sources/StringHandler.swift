@@ -20,9 +20,9 @@ class stringHandler {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         if pasteboard.setString(str, forType: NSPasteboard.PasteboardType.string) {
-        print("paste")
+            NSLog("--------------write to clipboard--------")
         } else {
-            print("fix me")
+            NSLog("fix me")
         }
         
     }
@@ -32,6 +32,9 @@ class stringHandler {
         return str
     }
     func removeCRLF() -> String? {
+        /*
+         return String value which is removed CRLF
+         */
         guard let str = NSPasteboard.general.string(forType: NSPasteboard.PasteboardType.string)
             else { return nil}
         return str.map{(elem : String.Element) -> String in
@@ -40,6 +43,6 @@ class stringHandler {
         
     }
     func justString() -> String {
-        return "yebityon"
+        return "debug string"
     }
 }

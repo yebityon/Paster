@@ -17,10 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let menuManager = MenuManager()
     
     private let myStringHandler : stringHandler = stringHandler()
-
-    fileprivate let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate var cachedChangeCount = BehaviorRelay<Int>(value: 0)
+    private let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
+    private let disposeBag = DisposeBag()
+    private var cachedChangeCount = BehaviorRelay<Int>(value: 0)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if debug {
@@ -35,29 +34,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     @objc func manageState(){
         menuManager.updateMenuState()
+        menuManager.changeButtonTitle()
     }
     func monitorClipBoard() {
         let monitorInterval = Observable<Int>.interval(.milliseconds(750), scheduler: scheduler)
+        
         monitorInterval
             // check the Pastedboard counter
             .map { _ in  NSPasteboard.general.changeCount}
-            .withLatestFrom(cachedChangeCount.asObservable()) {($0, $1)}
+            .withLatestFrom(cachedChangeCount) {($0, $1)}
             .filter({(lst: Int, cst: Int) -> Bool in
                 return lst != cst
             })
             // following function execute only if chache value and current value is differ.
             .subscribe(onNext: {[weak self] changeCount, _ in
-                if self?.menuManager.isPasterActive ?? false {
-                    let str = self?.myStringHandler.removeCRLF()
+                if self?.menuManager.isPasterActive ?? false ,
+                    let strHandler = self?.myStringHandler {
+                    let str = strHandler.removeCRLF()
                     if let s = str {
-                        self?.myStringHandler.writeToClipBoard(str: s)
+                        strHandler.writeToClipBoard(str: s)
                         //TODO:= use altenative way
                         self?.cachedChangeCount.accept(changeCount + 1)
                     }
                 }
             })
         .disposed(by: disposeBag)
-        
     }
     
     func mydebug(){
