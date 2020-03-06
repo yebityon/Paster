@@ -11,6 +11,8 @@ import Cocoa
 
 class stringHandler {
     
+    private static  let handler = stringHandler()
+    
     init() {
         
     }
@@ -18,7 +20,7 @@ class stringHandler {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         if pasteboard.setString(str, forType: NSPasteboard.PasteboardType.string) {
-            print("paste")
+        print("paste")
         } else {
             print("fix me")
         }

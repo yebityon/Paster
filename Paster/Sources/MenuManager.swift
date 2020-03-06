@@ -40,6 +40,29 @@ class MenuManager : NSObject {
             statusBarItem?.button?.title = "🍽"
         }
     }
+    func updateMenuState() {
+        if isPasterActive {
+            isPasterActive = false
+            changeButtonTitle()
+            if let stateMenu = statusBarMenu.item(at: 0){
+                stateMenu.title = "STATE : INACTIVE"
+                //MARK:= what is "itemChanged"? does this func need?
+                //menuManager.statusBarMenu.itemChanged(stateMenu)
+            }
+            if let manageMenu = statusBarMenu.item(at: 1){
+                manageMenu.title = "active"
+            }
+        } else {
+            isPasterActive = true
+           changeButtonTitle()
+            if let stateMenu = statusBarMenu.item(at: 0){
+                stateMenu.title = "STATE : ACTIVE"
+            }
+            if let manageMenu = statusBarMenu.item(at: 1){
+                manageMenu.title = "inactive"
+            }
+        }
+    }
     private func createMenu(){
         initPasterState()
         initPasterChangeState()

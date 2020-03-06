@@ -13,78 +13,63 @@ import RxCocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    let debug : Bool = false
     let menuManager = MenuManager()
-    var item : [NSPasteboardItem?] = []
+    
     private let myStringHandler : stringHandler = stringHandler()
-    fileprivate var lstString : String  = ""
+
     fileprivate let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     fileprivate let disposeBag = DisposeBag()
     fileprivate var cachedChangeCount = BehaviorRelay<Int>(value: 0)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.menuManager.build()
-        print("startMontoring")
-        self.startMonitoring()
-        print(#function)
+        if debug {
+            self.mydebug()
+        } else {
+            self.menuManager.build()
+            self.monitorClipBoard()
+        }
     }
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     @objc func manageState(){
-        if menuManager.isPasterActive {
-            menuManager.isPasterActive = false
-            menuManager.changeButtonTitle()
-            if let stateMenu = menuManager.statusBarMenu.item(at: 0){
-                stateMenu.title = "STATE : INACTIVE"
-                //MARK:= what is "itemChanged"? does this func need?
-                //menuManager.statusBarMenu.itemChanged(stateMenu)
-            }
-            if let manageMenu = menuManager.statusBarMenu.item(at: 1){
-                manageMenu.title = "active"
-            }
-        } else {
-            menuManager.isPasterActive = true
-            menuManager.changeButtonTitle()
-            if let stateMenu = menuManager.statusBarMenu.item(at: 0){
-                stateMenu.title = "STATE : ACTIVE"
-            }
-            if let manageMenu = menuManager.statusBarMenu.item(at: 1){
-                manageMenu.title = "inactive"
-            }
-        }
+        menuManager.updateMenuState()
     }
-    func startMonitoring() {
-//        let disposeBag = DisposeBag()
-        Observable<Int>.interval(0.75,scheduler: scheduler)
-            .subscribe({ [weak self]  _ in
-                if let str = self?.lstString , let strHandler = self?.myStringHandler,
-                    let menuManager = self?.menuManager {
-                    let currentStr = strHandler.getStr()
-                    if str != currentStr && menuManager.isPasterActive {
-                        self?.lstString = currentStr
-                        print("updated : lstString")
-                        let str = strHandler.removeCRLF()!
-                        strHandler.writeToClipBoard(str: str)
+    func monitorClipBoard() {
+        let monitorInterval = Observable<Int>.interval(.milliseconds(750), scheduler: scheduler)
+        monitorInterval
+            // check the Pastedboard counter
+            .map { _ in  NSPasteboard.general.changeCount}
+            .withLatestFrom(cachedChangeCount.asObservable()) {($0, $1)}
+            .filter({(lst: Int, cst: Int) -> Bool in
+                return lst != cst
+            })
+            // following function execute only if chache value and current value is differ.
+            .subscribe(onNext: {[weak self] changeCount, _ in
+                if self?.menuManager.isPasterActive ?? false {
+                    let str = self?.myStringHandler.removeCRLF()
+                    if let s = str {
+                        self?.myStringHandler.writeToClipBoard(str: s)
+                        //TODO:= use altenative way
+                        self?.cachedChangeCount.accept(changeCount + 1)
                     }
                 }
             })
-    }
-     func montoringClipBoard() {
-            Observable<Int>.interval(0.75,scheduler: scheduler)
-                .map{_ in NSPasteboard.general.changeCount }
-                //combine event
-                .withLatestFrom(cachedChangeCount.asObservable()){($0,$1)}
-                .filter{ $0 != $1}
-                .subscribe(onNext:{ [weak self] changeCount in
-                    
-                },
-                   onError: nil,
-                   onCompleted: nil,
-                   onDisposed: nil)
         .disposed(by: disposeBag)
         
-        
-        
-        }
+    }
     
+    func mydebug(){
+        let object = BehaviorRelay<Int>(value: 0)
+        object.subscribe(onNext: { elem in
+            print(elem)
+        })
+        object.accept(114514)
+        let e = {  (elem : Int) -> Int in
+            return elem + 2
+            
+        }
+    }
+
 }
