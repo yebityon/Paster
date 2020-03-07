@@ -50,9 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .subscribe(onNext: {[weak self] changeCount, _ in
                 if self?.menuManager.isPasterActive ?? false ,
                     let strHandler = self?.myStringHandler {
-                    let str = strHandler.removeCRLF()
-                    if let s = str {
-                        strHandler.writeToClipBoard(str: s)
+                    if let str = strHandler.removeCRLF() {
+                        strHandler.writeToClipBoard(str: str)
                         //TODO:= use altenative way
                         self?.cachedChangeCount.accept(changeCount + 1)
                     }
