@@ -30,7 +30,6 @@ class MenuManager : NSObject {
         //TODO:= for debug
         createMenu()
         statusBarItem?.menu = self.statusBarMenu
-        NSLog(#function + "called")
     }
     func changeButtonTitle() {
         if isPasterActive {
@@ -44,8 +43,6 @@ class MenuManager : NSObject {
             isPasterActive = false
             if let stateMenu = statusBarMenu.item(at: 0){
                 stateMenu.title = "STATE : INACTIVE"
-                //MARK:= what is "itemChanged"? does this func need?
-                //menuManager.statusBarMenu.itemChanged(stateMenu)
             }
             if let manageMenu = statusBarMenu.item(at: 1){
                 manageMenu.title = "active"

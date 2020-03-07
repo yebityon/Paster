@@ -13,7 +13,6 @@ import RxCocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let debug : Bool = false
     let menuManager = MenuManager()
     
     private let myStringHandler : stringHandler = stringHandler()
@@ -22,12 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var cachedChangeCount = BehaviorRelay<Int>(value: 0)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if debug {
-            self.mydebug()
-        } else {
-            self.menuManager.build()
-            self.monitorClipBoard()
-        }
+        self.menuManager.build()
+        self.monitorClipBoard()
+        
     }
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
@@ -57,19 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                 }
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
-    func mydebug(){
-        let object = BehaviorRelay<Int>(value: 0)
-        object.subscribe(onNext: { elem in
-            print(elem)
-        })
-        object.accept(114514)
-        let e = {  (elem : Int) -> Int in
-            return elem + 2
-            
-        }
-    }
-
 }

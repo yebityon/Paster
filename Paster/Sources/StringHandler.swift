@@ -20,9 +20,9 @@ class stringHandler {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         if pasteboard.setString(str, forType: NSPasteboard.PasteboardType.string) {
-            NSLog("--------------write to clipboard--------")
+
         } else {
-            NSLog("fix me")
+
         }
         
     }
@@ -41,8 +41,5 @@ class stringHandler {
             return (elem == "\n" || elem == "\r" ? " " : String(elem))
         }.reduce(""){ $0 + $1 }
         
-    }
-    func justString() -> String {
-        return "debug string"
     }
 }
