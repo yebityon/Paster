@@ -18,6 +18,7 @@ class MenuManager : NSObject {
     var itemPasterState  : NSMenuItem = NSMenuItem()
     var itemPasterChangeState : NSMenuItem  = NSMenuItem()
     var itemPasterQuit : NSMenuItem = NSMenuItem()
+    var itemPasterWordCnt : NSMenuItem = NSMenuItem()
 
     override init(){
         super.init()
@@ -57,10 +58,18 @@ class MenuManager : NSObject {
             }
         }
     }
+    func updateWordCnt(newcnt : Int) {
+        if isPasterActive {
+            if let stateMenu = statusBarMenu.item(at: 3){
+                stateMenu.title = String(newcnt)
+            }
+        }
+    }
     private func createMenu(){
         initPasterState()
         initPasterChangeState()
         initPasterQuit()
+        initPasterWordCnt()
     }
     private func initPasterState(){
         itemPasterState = NSMenuItem(title: "STATE : ACTIVE ",action : nil, keyEquivalent: "")
@@ -77,6 +86,11 @@ class MenuManager : NSObject {
         keyEquivalent: "q")
         itemPasterQuit.tag = 2
         statusBarMenu.addItem(itemPasterQuit)
+    }
+    private func initPasterWordCnt(){
+        itemPasterWordCnt = NSMenuItem(title : "0",action: nil,keyEquivalent: "")
+        itemPasterWordCnt.tag = 3
+        statusBarMenu.addItem(itemPasterWordCnt)
     }
 }
 

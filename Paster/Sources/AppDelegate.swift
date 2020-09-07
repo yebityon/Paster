@@ -15,7 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let menuManager = MenuManager()
     
-    private let myStringHandler : stringHandler = stringHandler()
+    private let myStringHandler : StringEditor = StringEditor()
+    private let clipboradManger : clipboardAction = clipboardAction()
     private let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     private let disposeBag = DisposeBag()
     private var cachedChangeCount = BehaviorRelay<Int>(value: 0)
@@ -44,10 +45,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             })
             // following function execute only if chache value and current value is differ.
             .subscribe(onNext: {[weak self] changeCount, _ in
-                if self?.menuManager.isPasterActive ?? false ,
-                    let strHandler = self?.myStringHandler {
-                    if let str = strHandler.removeCRLF() {
-                        strHandler.writeToClipBoard(str: str)
+                if self?.menuManager.isPasterActive != nil  &&
+                self? .clipboradManger != nil{
+                    if let str = self?.myStringHandler.removeCRLF(str: (self?.clipboradManger.getStr()) ?? "") {
+                        self?.clipboradManger.setStr(str: str)
+                        let wordvec = self?.myStringHandler.EnstrtoDictionary(str: str)
+                        self?.menuManager.updateWordCnt(newcnt: wordvec?.count ?? 0)
                         //TODO:= use altenative way
                         self?.cachedChangeCount.accept(changeCount + 1)
                     }
