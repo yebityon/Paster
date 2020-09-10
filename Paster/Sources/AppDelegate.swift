@@ -47,13 +47,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .subscribe(onNext: {[weak self] changeCount, _ in
                 if self?.menuManager.isPasterActive != nil  &&
                 self? .clipboradManger != nil{
-                    if let str = self?.myStringHandler.removeCRLF(str: (self?.clipboradManger.getStr()) ?? "") {
+                    guard let str = self?.clipboradManger.getStr() else{
+                        return
+                    }
+                    if let str = self?.myStringHandler.removeCRLF(str: str) {
                         self?.clipboradManger.setStr(str: str)
-                        let wordvec = self?.myStringHandler.EnstrtoDictionary(str: str)
-                        self?.menuManager.updateWordCnt(newcnt: wordvec?.count ?? 0)
-                        //TODO:= use altenative way
                         self?.cachedChangeCount.accept(changeCount + 1)
                     }
+                    let strType = self?.myStringHandler.launguageType(str: str)
+                    let wordCnt = self?.myStringHandler.countWord(str: str, strType: strType)
+                    self?.menuManager.updateWordCnt(newcnt: wordCnt, strType: strType)
+                    
                 }
             })
             .disposed(by: disposeBag)

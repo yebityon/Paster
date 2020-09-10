@@ -58,11 +58,18 @@ class MenuManager : NSObject {
             }
         }
     }
-    func updateWordCnt(newcnt : Int) {
-        if isPasterActive {
-            if let stateMenu = statusBarMenu.item(at: 3){
-                stateMenu.title = String(newcnt)
-            }
+    func updateWordCnt(newcnt : Int?, strType : String?) {
+        if !isPasterActive { return }
+        var updateString : String = ""
+        if newcnt == nil || strType == nil {
+            updateString = "---/---"
+        } else if ( strType == "ja") {
+            updateString = "Jp : " + String(newcnt!)  + " 文字"
+        } else {
+            updateString = "En : " + String(newcnt!)  + " word"
+        }
+        if let stateMenu = statusBarMenu.item(at: 3){
+                stateMenu.title = updateString
         }
     }
     private func createMenu(){
