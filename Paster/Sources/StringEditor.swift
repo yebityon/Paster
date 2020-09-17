@@ -24,12 +24,12 @@ class StringEditor{
         str.map{(elem : String.Element) -> String in
             return (elem == "\n" || elem == "\r" ? " " : String(elem)) }.reduce(""){ $0 + $1 }
     }
-    func launguageType( str : String ) -> String? {
-        recognizer.reset()
-        recognizer.processString(str)
-        print(str)
-        guard let launguage = recognizer.dominantLanguage else {
-            print(recognizer.languageHypotheses(withMaximum: 3))
+            func launguageType( str : String ) -> String? {
+            recognizer.reset()
+            recognizer.processString(str)
+            print(str)
+            guard let launguage = recognizer.dominantLanguage else {
+                print(recognizer.languageHypotheses(withMaximum: 3))
             print(recognizer.dominantLanguage?.rawValue)
             return nil
         }

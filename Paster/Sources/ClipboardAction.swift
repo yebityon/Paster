@@ -12,6 +12,7 @@ import Cocoa
 class clipboardAction {
     init() {
     }
+    private var previousStr : String = ""
     func setStr(str : String){
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -26,5 +27,11 @@ class clipboardAction {
         let pastedBoard = NSPasteboard.general
         guard let str = pastedBoard.string(forType: NSPasteboard.PasteboardType.string) else {return ""}
         return str
+    }
+    func storeClipbordStr() {
+        previousStr = getStr()
+    }
+    func recoveClipboard(){
+        setStr(str: previousStr)
     }
 }

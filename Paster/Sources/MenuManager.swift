@@ -19,6 +19,7 @@ class MenuManager : NSObject {
     var itemPasterChangeState : NSMenuItem  = NSMenuItem()
     var itemPasterQuit : NSMenuItem = NSMenuItem()
     var itemPasterWordCnt : NSMenuItem = NSMenuItem()
+    var previsouStr : String  = ""
 
     override init(){
         super.init()
@@ -42,18 +43,18 @@ class MenuManager : NSObject {
     func updateMenuState() {
         if isPasterActive {
             isPasterActive = false
-            if let stateMenu = statusBarMenu.item(at: 0){
+            if let stateMenu = statusBarMenu.item(withTag: 0){
                 stateMenu.title = "STATE : INACTIVE"
             }
-            if let manageMenu = statusBarMenu.item(at: 1){
+            if let manageMenu = statusBarMenu.item(withTag: 1){
                 manageMenu.title = "active"
             }
         } else {
             isPasterActive = true
-            if let stateMenu = statusBarMenu.item(at: 0){
+            if let stateMenu = statusBarMenu.item(withTag: 0){
                 stateMenu.title = "STATE : ACTIVE"
             }
-            if let manageMenu = statusBarMenu.item(at: 1){
+            if let manageMenu = statusBarMenu.item(withTag: 1){
                 manageMenu.title = "inactive"
             }
         }
@@ -68,7 +69,7 @@ class MenuManager : NSObject {
         } else {
             updateString = "En : " + String(newcnt!)  + " word"
         }
-        if let stateMenu = statusBarMenu.item(at: 3){
+        if let stateMenu = statusBarMenu.item(withTag: 3){
                 stateMenu.title = updateString
         }
     }

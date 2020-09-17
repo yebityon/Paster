@@ -3,4 +3,69 @@
    uuid = "130352AE-D882-4162-97CB-DF4C0C266ABD"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "109A19D3-71BB-48A0-BE75-EBB99252F566"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paster/Sources/StringEditor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "removeCRLF(str:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "109A19D3-71BB-48A0-BE75-EBB99252F566 - daee9752592460f8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Paster.StringEditor.removeCRLF(str: Swift.String) -&gt; Swift.String"
+                  moduleName = "Paster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seong/Documents/github/Paster/Paster/Sources/StringEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  uuid = "109A19D3-71BB-48A0-BE75-EBB99252F566 - 159c824fc194a303"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Character) -&gt; Swift.String in Paster.StringEditor.removeCRLF(str: Swift.String) -&gt; Swift.String"
+                  moduleName = "Paster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seong/Documents/github/Paster/Paster/Sources/StringEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "53">
+               </Location>
+               <Location
+                  uuid = "109A19D3-71BB-48A0-BE75-EBB99252F566 - f29e0b772d83e36a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.String, Swift.String) -&gt; Swift.String in Paster.StringEditor.removeCRLF(str: Swift.String) -&gt; Swift.String"
+                  moduleName = "Paster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seong/Documents/github/Paster/Paster/Sources/StringEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
