@@ -20,8 +20,7 @@ class PasterService{
     private let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     private let disposeBag = DisposeBag()
     private var cachedChangeCount = BehaviorRelay<Int>(value: 0)
-    private var clipboard : ClipboardManager = ClipboardManager()
-    private var menuManager : MenuManager = MenuManager()
+   
     
     
     func monitorClipBoard() {
@@ -36,17 +35,14 @@ class PasterService{
             })
             // following function execute only if chache value and current value is differ.
             .subscribe(onNext: {[weak self] changeCount, _ in
-                guard let clipboard = self?.clipboard else {
-                    return
-                }
-                guard let currentState = self?.menuManager.isPasterActive else {
-                    return
-                }
-                let str = clipboard.getStr()
+    
+                let currentState = AppEnvironment.properties.menuManager.isPasterActive
+            
+                guard let str = AppEnvironment.properties.clipboardManager.getStr() else { return }
                 //remove CRLF
                 if currentState {
                     let removedStr = self?.removeCRLF.removeCRLF(str: str) as! String
-                    clipboard.setStr(str: removedStr)
+                    AppEnvironment.properties.clipboardManager.setStr(str: removedStr)
                     self?.cachedChangeCount.accept(changeCount + 1)
                 }
                 //wordCnt
@@ -54,7 +50,7 @@ class PasterService{
                     let strType = wordCount.launguageType(str: str)
                     let wordCounter = wordCount.countWord(str: str, strType: strType)
                     print(wordCounter)
-                    self?.menuManager.updateWordCnt(newcnt: wordCounter, strType: strType)
+                    AppEnvironment.properties.menuManager.updateWordCnt(newcnt: wordCounter, strType: strType)
                     
                 }
                 

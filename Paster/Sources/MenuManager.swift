@@ -69,10 +69,6 @@ class MenuManager : NSObject {
         } else {
             updateString = "En : " + String(newcnt!)  + " word"
         }
-        print("-------yebityon---------")
-        if let manageMenu = statusBarMenu.item(withTag: 0){
-            manageMenu.title = "💩"
-        }
         if let stateMenu = statusBarMenu.item(withTag: 3){
             print(stateMenu.title)
             stateMenu.title = updateString

@@ -22,8 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var cachedChangeCount = BehaviorRelay<Int>(value: 0)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.menuManager.build()
-        self.monitorClipBoard()
+        AppEnvironment.properties.menuManager.build()
+        AppEnvironment.properties.pasterService.monitorClipBoard()
         
     }
     func applicationWillTerminate(_ aNotification: Notification) {

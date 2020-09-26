@@ -18,10 +18,10 @@
 		2907F31A240A4FAD00BC7DB3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2907F319240A4FAD00BC7DB3 /* RxCocoa */; };
 		2907F31E240A4FE200BC7DB3 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907F31D240A4FE200BC7DB3 /* MenuManager.swift */; };
 		2907F320240A500A00BC7DB3 /* ClipboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907F31F240A500A00BC7DB3 /* ClipboardManager.swift */; };
-		29E49BF324129BD400152A68 /* StringEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E49BF224129BD400152A68 /* StringEditor.swift */; };
 		4C8DC5FE251DDF7700295A27 /* PasterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DC5FD251DDF7700295A27 /* PasterService.swift */; };
 		4C8DC600251DDFEF00295A27 /* WordCnt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DC5FF251DDFEF00295A27 /* WordCnt.swift */; };
 		4C8DC602251E36B900295A27 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DC601251E36B900295A27 /* Environment.swift */; };
+		4C8DC604251EE58700295A27 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DC603251EE58700295A27 /* AppEnvironment.swift */; };
 		4C9F462D251DD86800C1A9AF /* RemoveCRLFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F462C251DD86800C1A9AF /* RemoveCRLFService.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,10 +58,10 @@
 		2907F306240A4F1B00BC7DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2907F31D240A4FE200BC7DB3 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2907F31F240A500A00BC7DB3 /* ClipboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardManager.swift; sourceTree = "<group>"; };
-		29E49BF224129BD400152A68 /* StringEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEditor.swift; sourceTree = "<group>"; };
 		4C8DC5FD251DDF7700295A27 /* PasterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasterService.swift; sourceTree = "<group>"; };
 		4C8DC5FF251DDFEF00295A27 /* WordCnt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCnt.swift; sourceTree = "<group>"; };
 		4C8DC601251E36B900295A27 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		4C8DC603251EE58700295A27 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		4C9F462C251DD86800C1A9AF /* RemoveCRLFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveCRLFService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,13 +156,13 @@
 			isa = PBXGroup;
 			children = (
 				4C8DC5FD251DDF7700295A27 /* PasterService.swift */,
+				4C8DC603251EE58700295A27 /* AppEnvironment.swift */,
 				4C8DC5FF251DDFEF00295A27 /* WordCnt.swift */,
 				4C9F462C251DD86800C1A9AF /* RemoveCRLFService.swift */,
 				4C8DC601251E36B900295A27 /* Environment.swift */,
 				2907F2E3240A4F1700BC7DB3 /* AppDelegate.swift */,
 				2907F31F240A500A00BC7DB3 /* ClipboardManager.swift */,
 				2907F31D240A4FE200BC7DB3 /* MenuManager.swift */,
-				29E49BF224129BD400152A68 /* StringEditor.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -311,9 +311,9 @@
 				4C8DC600251DDFEF00295A27 /* WordCnt.swift in Sources */,
 				4C8DC5FE251DDF7700295A27 /* PasterService.swift in Sources */,
 				2907F2E4240A4F1700BC7DB3 /* AppDelegate.swift in Sources */,
-				29E49BF324129BD400152A68 /* StringEditor.swift in Sources */,
 				4C9F462D251DD86800C1A9AF /* RemoveCRLFService.swift in Sources */,
 				2907F320240A500A00BC7DB3 /* ClipboardManager.swift in Sources */,
+				4C8DC604251EE58700295A27 /* AppEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
