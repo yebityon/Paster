@@ -27,8 +27,8 @@ class WordCntService{
         recognizer.processString(str)
         print(str)
         guard let launguage = recognizer.dominantLanguage else {
-            print(recognizer.languageHypotheses(withMaximum: 3))
-            print(recognizer.dominantLanguage?.rawValue)
+//            print(recognizer.languageHypotheses(withMaximum: 3))
+//            print(recognizer.dominantLanguage?.rawValue)
             return nil
         }
         print(launguage.rawValue)

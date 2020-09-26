@@ -38,6 +38,7 @@ class PasterService{
                 let currentState = AppEnvironment.properties.menuManager.isPasterActive
             
                 guard let str = AppEnvironment.properties.clipboardManager.getStr() else { return }
+                AppEnvironment.properties.clipboardManager.storeClipbordStr()
                 //remove CRLF
                 if currentState {
                     let removedStr = self?.removeCRLF.removeCRLF(str: str) as! String

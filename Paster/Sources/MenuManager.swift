@@ -47,7 +47,8 @@ class MenuManager : NSObject {
             if let manageMenu = statusBarMenu.item(withTag: 1){
                 manageMenu.title = "active"
             }
-            //AppEnvironment.properties.clipboardManager.recoveClipboard()
+            AppEnvironment.properties.clipboardManager.recoveClipboard()
+            AppEnvironment.properties.cachedChangeCount.accept(AppEnvironment.properties.cachedChangeCount.value + 1)
         } else {
             isPasterActive = true
             if let stateMenu = statusBarMenu.item(withTag: 0){
@@ -56,6 +57,7 @@ class MenuManager : NSObject {
             if let manageMenu = statusBarMenu.item(withTag: 1){
                 manageMenu.title = "inactive"
             }
+            
         }
     }
     func updateWordCnt(newcnt : Int?, strType : String?) {
