@@ -1,5 +1,5 @@
 //
-//  MonitorClipboard.swift
+//  wordCntService.swift
 //  Paster
 //
 //  Created by Seong on 2020/03/06.
@@ -8,10 +8,13 @@ import Foundation
 import NaturalLanguage
 
 
-class StringEditor{
+class WordCntService{
     private let tokenizer = NLTokenizer(unit: .word)
     private let recognizer = NLLanguageRecognizer()
     
+    init(){
+        
+    }
     func EnstrtoDictionary(str : String ) -> [String]{
         let wordvec : [String] = str.split(whereSeparator: {"!,. ".contains($0)}).map{(elem : Substring) -> String in
             return String(elem)}
@@ -50,3 +53,4 @@ class StringEditor{
         return wordCnt
     }
 }
+

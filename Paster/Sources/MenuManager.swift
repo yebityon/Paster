@@ -10,7 +10,7 @@ import Cocoa
 
 class MenuManager : NSObject {
     
-
+    
     private var statusBarItem : NSStatusItem?
     private var statusBarMenu = NSMenu()
     
@@ -20,7 +20,7 @@ class MenuManager : NSObject {
     var itemPasterQuit : NSMenuItem = NSMenuItem()
     var itemPasterWordCnt : NSMenuItem = NSMenuItem()
     var previsouStr : String  = ""
-
+    
     override init(){
         super.init()
     }
@@ -69,8 +69,13 @@ class MenuManager : NSObject {
         } else {
             updateString = "En : " + String(newcnt!)  + " word"
         }
+        print("-------yebityon---------")
+        if let manageMenu = statusBarMenu.item(withTag: 0){
+            manageMenu.title = "💩"
+        }
         if let stateMenu = statusBarMenu.item(withTag: 3){
-                stateMenu.title = updateString
+            print(stateMenu.title)
+            stateMenu.title = updateString
         }
     }
     private func createMenu(){
@@ -81,22 +86,22 @@ class MenuManager : NSObject {
     }
     private func initPasterState(){
         itemPasterState = NSMenuItem(title: "STATE : ACTIVE ",action : nil, keyEquivalent: "")
-        itemPasterState.tag = 0
+        itemPasterState.tag = 1
         statusBarMenu.addItem(itemPasterState)
     }
     private func initPasterChangeState(){
         itemPasterChangeState = NSMenuItem(title:"inactive", action : #selector(AppDelegate.manageState),keyEquivalent: "")
-        itemPasterState.tag = 1
+        itemPasterState.tag = 0
         statusBarMenu.addItem(itemPasterChangeState)
     }
     private func initPasterQuit(){
         itemPasterQuit = NSMenuItem(title: "Quit",action: #selector(NSApplication.terminate(_:)),
-        keyEquivalent: "q")
+                                    keyEquivalent: "q")
         itemPasterQuit.tag = 2
         statusBarMenu.addItem(itemPasterQuit)
     }
     private func initPasterWordCnt(){
-        itemPasterWordCnt = NSMenuItem(title : "0",action: nil,keyEquivalent: "")
+        itemPasterWordCnt = NSMenuItem(title : "init",action: nil,keyEquivalent: "")
         itemPasterWordCnt.tag = 3
         statusBarMenu.addItem(itemPasterWordCnt)
     }

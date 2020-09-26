@@ -9,9 +9,10 @@
 import Foundation
 import Cocoa
 
-class clipboardAction {
+class ClipboardManager {
     init() {
     }
+    
     private var previousStr : String = ""
     func setStr(str : String){
         let pasteboard = NSPasteboard.general

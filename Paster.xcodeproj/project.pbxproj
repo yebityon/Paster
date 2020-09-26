@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2907F2E4240A4F1700BC7DB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907F2E3240A4F1700BC7DB3 /* AppDelegate.swift */; };
-		2907F2E6240A4F1700BC7DB3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907F2E5240A4F1700BC7DB3 /* ContentView.swift */; };
 		2907F2E8240A4F1A00BC7DB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2907F2E7240A4F1A00BC7DB3 /* Assets.xcassets */; };
 		2907F2EB240A4F1A00BC7DB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2907F2EA240A4F1A00BC7DB3 /* Preview Assets.xcassets */; };
 		2907F2EE240A4F1A00BC7DB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2907F2EC240A4F1A00BC7DB3 /* Main.storyboard */; };
@@ -18,8 +17,12 @@
 		2907F318240A4FAD00BC7DB3 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2907F317240A4FAD00BC7DB3 /* RxRelay */; };
 		2907F31A240A4FAD00BC7DB3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2907F319240A4FAD00BC7DB3 /* RxCocoa */; };
 		2907F31E240A4FE200BC7DB3 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907F31D240A4FE200BC7DB3 /* MenuManager.swift */; };
-		2907F320240A500A00BC7DB3 /* ClipboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907F31F240A500A00BC7DB3 /* ClipboardAction.swift */; };
+		2907F320240A500A00BC7DB3 /* ClipboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907F31F240A500A00BC7DB3 /* ClipboardManager.swift */; };
 		29E49BF324129BD400152A68 /* StringEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E49BF224129BD400152A68 /* StringEditor.swift */; };
+		4C8DC5FE251DDF7700295A27 /* PasterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DC5FD251DDF7700295A27 /* PasterService.swift */; };
+		4C8DC600251DDFEF00295A27 /* WordCnt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DC5FF251DDFEF00295A27 /* WordCnt.swift */; };
+		4C8DC602251E36B900295A27 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DC601251E36B900295A27 /* Environment.swift */; };
+		4C9F462D251DD86800C1A9AF /* RemoveCRLFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F462C251DD86800C1A9AF /* RemoveCRLFService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +45,6 @@
 /* Begin PBXFileReference section */
 		2907F2E0240A4F1700BC7DB3 /* Paster.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Paster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2907F2E3240A4F1700BC7DB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2907F2E5240A4F1700BC7DB3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2907F2E7240A4F1A00BC7DB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2907F2EA240A4F1A00BC7DB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2907F2ED240A4F1A00BC7DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,8 +57,12 @@
 		2907F304240A4F1B00BC7DB3 /* PasterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasterUITests.swift; sourceTree = "<group>"; };
 		2907F306240A4F1B00BC7DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2907F31D240A4FE200BC7DB3 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
-		2907F31F240A500A00BC7DB3 /* ClipboardAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardAction.swift; sourceTree = "<group>"; };
+		2907F31F240A500A00BC7DB3 /* ClipboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardManager.swift; sourceTree = "<group>"; };
 		29E49BF224129BD400152A68 /* StringEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEditor.swift; sourceTree = "<group>"; };
+		4C8DC5FD251DDF7700295A27 /* PasterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasterService.swift; sourceTree = "<group>"; };
+		4C8DC5FF251DDFEF00295A27 /* WordCnt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCnt.swift; sourceTree = "<group>"; };
+		4C8DC601251E36B900295A27 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		4C9F462C251DD86800C1A9AF /* RemoveCRLFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveCRLFService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,9 +155,12 @@
 		2907F321240A5AC600BC7DB3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2907F2E5240A4F1700BC7DB3 /* ContentView.swift */,
-				2907F31F240A500A00BC7DB3 /* ClipboardAction.swift */,
+				4C8DC5FD251DDF7700295A27 /* PasterService.swift */,
+				4C8DC5FF251DDFEF00295A27 /* WordCnt.swift */,
+				4C9F462C251DD86800C1A9AF /* RemoveCRLFService.swift */,
+				4C8DC601251E36B900295A27 /* Environment.swift */,
 				2907F2E3240A4F1700BC7DB3 /* AppDelegate.swift */,
+				2907F31F240A500A00BC7DB3 /* ClipboardManager.swift */,
 				2907F31D240A4FE200BC7DB3 /* MenuManager.swift */,
 				29E49BF224129BD400152A68 /* StringEditor.swift */,
 			);
@@ -298,10 +307,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2907F31E240A4FE200BC7DB3 /* MenuManager.swift in Sources */,
-				2907F2E6240A4F1700BC7DB3 /* ContentView.swift in Sources */,
+				4C8DC602251E36B900295A27 /* Environment.swift in Sources */,
+				4C8DC600251DDFEF00295A27 /* WordCnt.swift in Sources */,
+				4C8DC5FE251DDF7700295A27 /* PasterService.swift in Sources */,
 				2907F2E4240A4F1700BC7DB3 /* AppDelegate.swift in Sources */,
 				29E49BF324129BD400152A68 /* StringEditor.swift in Sources */,
-				2907F320240A500A00BC7DB3 /* ClipboardAction.swift in Sources */,
+				4C9F462D251DD86800C1A9AF /* RemoveCRLFService.swift in Sources */,
+				2907F320240A500A00BC7DB3 /* ClipboardManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
