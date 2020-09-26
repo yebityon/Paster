@@ -9,8 +9,6 @@ import Foundation
 import Cocoa
 
 class MenuManager : NSObject {
-    
-    
     private var statusBarItem : NSStatusItem?
     private var statusBarMenu = NSMenu()
     
@@ -49,6 +47,7 @@ class MenuManager : NSObject {
             if let manageMenu = statusBarMenu.item(withTag: 1){
                 manageMenu.title = "active"
             }
+            //AppEnvironment.properties.clipboardManager.recoveClipboard()
         } else {
             isPasterActive = true
             if let stateMenu = statusBarMenu.item(withTag: 0){
@@ -82,12 +81,12 @@ class MenuManager : NSObject {
     }
     private func initPasterState(){
         itemPasterState = NSMenuItem(title: "STATE : ACTIVE ",action : nil, keyEquivalent: "")
-        itemPasterState.tag = 1
+        itemPasterState.tag = 0
         statusBarMenu.addItem(itemPasterState)
     }
     private func initPasterChangeState(){
         itemPasterChangeState = NSMenuItem(title:"inactive", action : #selector(AppDelegate.manageState),keyEquivalent: "")
-        itemPasterState.tag = 0
+        itemPasterChangeState.tag = 1
         statusBarMenu.addItem(itemPasterChangeState)
     }
     private func initPasterQuit(){

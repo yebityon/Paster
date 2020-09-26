@@ -12,15 +12,6 @@ import RxCocoa
 @NSApplicationMain
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
-    public let menuManager = MenuManager()
-    
-    private let clipboard : ClipboardManager = ClipboardManager()
-    private let pasterService : PasterService = PasterService()
-    private let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
-    private let disposeBag = DisposeBag()
-    private var cachedChangeCount = BehaviorRelay<Int>(value: 0)
-    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         AppEnvironment.properties.menuManager.build()
         AppEnvironment.properties.pasterService.monitorClipBoard()
@@ -30,11 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     @objc func manageState(){
-        menuManager.updateMenuState()
-        menuManager.changeButtonTitle()
-    }
-    func monitorClipBoard() {
-        pasterService.monitorClipBoard()
+        AppEnvironment.properties.menuManager.updateMenuState()
+        AppEnvironment.properties.menuManager.changeButtonTitle()
     }
     
 }

@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import RxSwift
+import RxRelay
 
 struct Environment {
     //MARK : -properties
     let menuManager : MenuManager
     let pasterService : PasterService
     let clipboardManager : ClipboardManager
+    let cachedChangeCount = BehaviorRelay<Int>(value: 0)
     
     init(menuManager: MenuManager = MenuManager(),
          pasterService: PasterService = PasterService(),
