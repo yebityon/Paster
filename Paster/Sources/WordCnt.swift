@@ -25,13 +25,13 @@ class WordCntService{
     func launguageType( str : String ) -> String? {
         recognizer.reset()
         recognizer.processString(str)
-        print(str)
+       // print(str)
         guard let launguage = recognizer.dominantLanguage else {
 //            print(recognizer.languageHypotheses(withMaximum: 3))
 //            print(recognizer.dominantLanguage?.rawValue)
             return nil
         }
-        print(launguage.rawValue)
+//        print(launguage.rawValue)
         return launguage.rawValue
     }
     func countWord( str : String?, strType : String?) -> Int? {

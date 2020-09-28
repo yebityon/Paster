@@ -23,7 +23,7 @@ class PasterService{
     
     
     func monitorClipBoard() {
-        let monitorInterval = Observable<Int>.interval(.milliseconds(750), scheduler: scheduler)
+        let monitorInterval = Observable<Int>.interval(.milliseconds(1000), scheduler: scheduler)
         
         monitorInterval
             // check the Pastedboard counter
@@ -34,18 +34,26 @@ class PasterService{
             })
             // following function execute only if chache value and current value is differ.
             .subscribe(onNext: {[weak self] changeCount, _ in
-    
                 let currentState = AppEnvironment.properties.menuManager.isPasterActive
             
                 guard let str = AppEnvironment.properties.clipboardManager.getStr() else { return }
+                print("-----------------------------------------------")
+                print(str)
+                print("-----------------------------------------------")
+                print("")
                 AppEnvironment.properties.clipboardManager.storeClipbordStr()
                 //remove CRLF
                 if currentState {
                     let removedStr = self?.removeCRLF.removeCRLF(str: str) as! String
                     AppEnvironment.properties.clipboardManager.setStr(str: removedStr)
                     AppEnvironment.properties.cachedChangeCount.accept(changeCount + 1)
-                    print(changeCount + 1)
+//                  print(changeCount + 1)
+                   print("--------------------------removed-------------")
+                   print(removedStr)
+                   print("-------------------------gigegiga----------------")
+                   print("\n\n")
                 }
+                
                 //wordCnt
                 if let wordCount = self?.wordCount {
                     let strType = wordCount.launguageType(str: str)

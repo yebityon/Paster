@@ -71,7 +71,7 @@ class MenuManager : NSObject {
             updateString = "En : " + String(newcnt!)  + " word"
         }
         if let stateMenu = statusBarMenu.item(withTag: 3){
-            print(stateMenu.title)
+//            print(stateMenu.title)
             stateMenu.title = updateString
         }
     }
