@@ -12,48 +12,18 @@ import RxCocoa
 @NSApplicationMain
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
-    let menuManager = MenuManager()
-    
-    private let myStringHandler : stringHandler = stringHandler()
-    private let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
-    private let disposeBag = DisposeBag()
-    private var cachedChangeCount = BehaviorRelay<Int>(value: 0)
-    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.menuManager.build()
-        self.monitorClipBoard()
+        AppEnvironment.properties.menuManager.build()
+        AppEnvironment.properties.pasterService.monitorClipBoard()
+        //AppEnvironment.properties.debug.monitorClipBoard()
         
     }
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     @objc func manageState(){
-        menuManager.updateMenuState()
-        menuManager.changeButtonTitle()
-    }
-    func monitorClipBoard() {
-        let monitorInterval = Observable<Int>.interval(.milliseconds(750), scheduler: scheduler)
-        
-        monitorInterval
-            // check the Pastedboard counter
-            .map { _ in  NSPasteboard.general.changeCount}
-            .withLatestFrom(cachedChangeCount) {($0, $1)}
-            .filter({(lst: Int, cst: Int) -> Bool in
-                return lst != cst
-            })
-            // following function execute only if chache value and current value is differ.
-            .subscribe(onNext: {[weak self] changeCount, _ in
-                if self?.menuManager.isPasterActive ?? false ,
-                    let strHandler = self?.myStringHandler {
-                    if let str = strHandler.removeCRLF() {
-                        strHandler.writeToClipBoard(str: str)
-                        //TODO:= use altenative way
-                        self?.cachedChangeCount.accept(changeCount + 1)
-                    }
-                }
-            })
-            .disposed(by: disposeBag)
+        AppEnvironment.properties.menuManager.updateMenuState()
+        AppEnvironment.properties.menuManager.changeButtonTitle()
     }
     
 }
