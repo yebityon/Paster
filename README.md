@@ -14,8 +14,8 @@ Paster automatically calculate word count which is pasted on clipboard in a way 
 Cullently, This featrures works English and Japanese.
 
 # Install 
-I release Paster ver 2.0!!
-
+I release Paster ver 2.0!!  
+Download `Paster.zip` from Release page.  
 1.download zip file from Release Page.  
 2.In the Finder  on your Mac, locate the app you want to open.  
 3.Control-click the app icon, then choose Open from the shortcut menu.  
