@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         AppEnvironment.properties.menuManager.build()
         AppEnvironment.properties.pasterService.monitorClipBoard()
+        //AppEnvironment.properties.debug.monitorClipBoard()
         
     }
     func applicationWillTerminate(_ aNotification: Notification) {

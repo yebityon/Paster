@@ -16,6 +16,7 @@ struct Environment {
     let pasterService : PasterService
     let clipboardManager : ClipboardManager
     let cachedChangeCount = BehaviorRelay<Int>(value: 0)
+    let debug : debugForPaster = debugForPaster()
     
     init(menuManager: MenuManager = MenuManager(),
          pasterService: PasterService = PasterService(),

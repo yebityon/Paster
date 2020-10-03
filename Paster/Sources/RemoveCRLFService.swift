@@ -12,9 +12,10 @@ class RemoveCRLFService {
     init(){
         
     }
+    let removeCRLFPattern = ""
     func removeCRLF( str : String) -> String {
-        /*          return String value which is removed CRLF          */
-        str.map{(elem : String.Element) -> String in
-            return (elem == "\n" || elem == "\r" ? " " : String(elem)) }.reduce(""){ $0 + $1 }
+        let res = str.replacingOccurrences(of:"\n\r|\n|\r", with:"",options: .regularExpression)
+        return res
+        
     }
 }

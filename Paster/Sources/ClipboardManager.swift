@@ -34,8 +34,6 @@ class ClipboardManager {
         previousStr = str
     }
     func recoveClipboard(){
-//        print("-------yebityonhogehoge------------")
-//        print(previousStr)
         setStr(str: previousStr)
     }
 }

@@ -42,20 +42,20 @@ class MenuManager : NSObject {
         if isPasterActive {
             isPasterActive = false
             if let stateMenu = statusBarMenu.item(withTag: 0){
-                stateMenu.title = "STATE : INACTIVE"
+                stateMenu.title = "STATE : Disabled"
             }
             if let manageMenu = statusBarMenu.item(withTag: 1){
-                manageMenu.title = "active"
+                manageMenu.title = "Enable"
             }
             AppEnvironment.properties.clipboardManager.recoveClipboard()
             AppEnvironment.properties.cachedChangeCount.accept(AppEnvironment.properties.cachedChangeCount.value + 1)
         } else {
             isPasterActive = true
             if let stateMenu = statusBarMenu.item(withTag: 0){
-                stateMenu.title = "STATE : ACTIVE"
+                stateMenu.title = "STATE :Enable"
             }
             if let manageMenu = statusBarMenu.item(withTag: 1){
-                manageMenu.title = "inactive"
+                manageMenu.title = "Disabled"
             }
             
         }
@@ -71,7 +71,6 @@ class MenuManager : NSObject {
             updateString = "En : " + String(newcnt!)  + " word"
         }
         if let stateMenu = statusBarMenu.item(withTag: 3){
-//            print(stateMenu.title)
             stateMenu.title = updateString
         }
     }
@@ -82,12 +81,12 @@ class MenuManager : NSObject {
         initPasterWordCnt()
     }
     private func initPasterState(){
-        itemPasterState = NSMenuItem(title: "STATE : ACTIVE ",action : nil, keyEquivalent: "")
+        itemPasterState = NSMenuItem(title: "STATE : Enabled ",action : nil, keyEquivalent: "")
         itemPasterState.tag = 0
         statusBarMenu.addItem(itemPasterState)
     }
     private func initPasterChangeState(){
-        itemPasterChangeState = NSMenuItem(title:"inactive", action : #selector(AppDelegate.manageState),keyEquivalent: "")
+        itemPasterChangeState = NSMenuItem(title:"Disabled", action : #selector(AppDelegate.manageState),keyEquivalent: "")
         itemPasterChangeState.tag = 1
         statusBarMenu.addItem(itemPasterChangeState)
     }
@@ -98,7 +97,7 @@ class MenuManager : NSObject {
         statusBarMenu.addItem(itemPasterQuit)
     }
     private func initPasterWordCnt(){
-        itemPasterWordCnt = NSMenuItem(title : "init",action: nil,keyEquivalent: "")
+        itemPasterWordCnt = NSMenuItem(title : "---/---",action: nil,keyEquivalent: "")
         itemPasterWordCnt.tag = 3
         statusBarMenu.addItem(itemPasterWordCnt)
     }
