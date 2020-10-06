@@ -19,7 +19,7 @@ class PasterService{
     private let wordCount  : WordCntService = WordCntService()
     private let scheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
     private let disposeBag = DisposeBag()
-   
+    
     
     
     func monitorClipBoard() {
@@ -35,7 +35,7 @@ class PasterService{
             // following function execute only if chache value and current value is differ.
             .subscribe(onNext: {[weak self] changeCount, _ in
                 let currentState = AppEnvironment.properties.menuManager.isPasterActive
-            
+                
                 guard let str = AppEnvironment.properties.clipboardManager.getStr() else { return }
                 AppEnvironment.properties.clipboardManager.storeClipbordStr()
                 //remove CRLF
@@ -43,19 +43,16 @@ class PasterService{
                     let removedStr = self?.removeCRLF.removeCRLF(str: str) as! String
                     AppEnvironment.properties.clipboardManager.setStr(str: removedStr)
                     AppEnvironment.properties.cachedChangeCount.accept(changeCount + 1)
-//                  print(changeCount + 1)
-                }
-                
-                //wordCnt
-                if let wordCount = self?.wordCount {
-                    guard let str = self?.removeCRLF.removeCRLF(str: str) else{
-                        return
+                    //                  print(changeCount + 1)
+                    if let wordCount = self?.wordCount {
+                        guard let str = self?.removeCRLF.removeCRLF(str: str) else{
+                            return
+                        }
+                        let strType = wordCount.launguageType(str: str)
+                        let wordCounter = wordCount.countWord(str: str, strType: strType)
+                        AppEnvironment.properties.menuManager.updateWordCnt(newcnt: wordCounter, strType: strType)
                     }
-                    let strType = wordCount.launguageType(str: str)
-                    let wordCounter = wordCount.countWord(str: str, strType: strType)
-                    AppEnvironment.properties.menuManager.updateWordCnt(newcnt: wordCounter, strType: strType)
                 }
-                
             })
             .disposed(by: disposeBag)
     }
