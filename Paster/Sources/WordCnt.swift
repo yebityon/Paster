@@ -19,7 +19,7 @@ class WordCntService{
         let wordvec : [String] = str.split(whereSeparator: {"!,. ".contains($0)}).map{(elem : Substring) -> String in
             return String(elem)}
         
-        let cnt = wordvec.count
+        _ = wordvec.count
         return wordvec
     }
     func launguageType( str : String ) -> String? {
