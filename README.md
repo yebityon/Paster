@@ -1,32 +1,32 @@
 # Paster
-Paster is menu bar app to enhance translate's accurancy by removing CRLF.  
-Japanese document is availabe [here](http://yebityon.hatenablog.com/entry/2020/03/07/161614).
+Paster is a menu bar app that optimizes text for machine translation.
+Japanese document is available [here](http://yebityon.hatenablog.com/entry/2020/03/07/161614).
 
-# Features
-From Paster ver2.0, Paster provides two types of features.
+## Features
+1. Removes newlines
+Some translators don't work well for English sentence which is copied from two-column paper.
+This is caused by newline characters (i.e. `"\r"` and `"\n"`, also known as CR and LF).
 
-1. Automatically remove CRLF  
-Some translator doesn't work well when you paste English sentence which is copied from two column paper, because it includes CRLF(ex. `"\n","\r"`).  
+2. Shows word count
+It shows the word count of the text in the clipboard.
+It applies the appropriate counting method based on the text language.
+Currently, English and Japanese are supported.
 
-2. Word Count  
-Paster automatically calculate word count which is pasted on clipboard in a way that is appropriate for that language.
-Cullently, This featrures works English and Japanese.
+## Install
+Paster ver2.0 has been released!!
 
-# Install 
-I release Paster ver 2.0!!  
-Download `Paster.zip` from Release page.    
-1.download zip file from Release Page.  
-2.In the Finder  on your Mac, locate the app you want to open.  
-3.Control-click the app icon, then choose Open from the shortcut menu.  
-4.Click Open.  
+1. Download `Paster.zip` from [the Release page](https://github.com/yebityon/Paster/releases).
+2. In the Finder on your Mac, find the app you want to open.
+3. Control-click the app icon.
+4. Choose `Open from the shortcut menu`.
+5. Click `Open`.
 
-The reason why this instruction need is I have not enrolled apple developper progrom.
+This instruction exists because I have not enrolled in the apple developer program yet.
 
-Reference :   
-https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac (JP)  
-https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac (En)  
+References:
+* https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac (JP)
+* https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac (En)
 
-
-# Help!
-I am newbie an programming, so Paster might have serious bug.  
-I need your help. if you notice something(PR,issue or something...), please let me know.  
+## Help!
+I am a newbie programmer, so Paster might have serious bugs.
+I need your help. If you notice something, please submit an issue or create a pull request.
